@@ -3,7 +3,7 @@ pipeline {
 
     tools {
         // Matches the name configured in Jenkins Global Tool Configuration
-        maven 'Maven-3.8.7'
+        maven 'Maven 3.8.7'
     }
 
     triggers {
