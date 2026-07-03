@@ -43,12 +43,12 @@ pipeline {
 
         stage('Load Image into Kind') {
             steps {
-                echo "Loading Docker image into Kind cluster..."
-                // Crucial step for Kind to make the local image accessible to pods
-                sh "kind load docker-image ${IMAGE_NAME}:${IMAGE_TAG}"
+                echo "Loading Docker image into Kind cluster: dev-cluster..."
+                // Added the explicit --name flag to find your custom cluster
+                sh "kind load docker-image ${IMAGE_NAME}:${IMAGE_TAG} --name dev-cluster"
             }
         }
-
+        
         stage('Kubernetes Deployment') {
             steps {
                 echo 'Deploying to Kubernetes Cluster...'
