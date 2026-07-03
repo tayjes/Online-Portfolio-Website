@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design Studio Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="#home" class="logo">
+      <span class="logo-mark" aria-hidden="true">✺</span>
+      <span class="logo-text">Create&nbsp;&&nbsp;Design&nbsp;Portfolio</span>
+    </a>
+    <nav class="main-nav">
+      <a href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a href="#portfolio">Work</a>
+      <a href="#testimonials">Clients</a>
+      <a href="#contact" class="nav-cta">Contact</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section id="home" class="hero wrap">
+    <div class="hero-copy">
+      <p class="eyebrow">Design studio · Est. portfolio workflow</p>
+      <h1>Every brand tells a story.<br>We design how it's told.</h1>
+      <p class="hero-sub">Atelier Nine designs and maintains portfolio websites for
+        independent studios and small businesses — branding, interfaces, and the
+        occasional obsession with kerning.</p>
+      <div class="hero-actions">
+        <a href="#portfolio" class="btn btn-primary">See the work</a>
+        <a href="#contact" class="btn btn-ghost">Start a project</a>
+      </div>
+    </div>
+    <div class="hero-board" aria-hidden="true">
+      <div class="pin-card card-a"><span class="pin"></span>Branding</div>
+      <div class="pin-card card-b"><span class="pin"></span>Web Design</div>
+      <div class="pin-card card-c"><span class="pin"></span>UI / UX</div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="services wrap">
+    <p class="eyebrow">What we do</p>
+    <h2>Services</h2>
+    <div id="services-grid" class="services-grid">
+      <!-- populated by script.js from /api/services -->
+      <p class="loading-text">Loading services…</p>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section id="portfolio" class="portfolio wrap">
+    <p class="eyebrow">Selected work</p>
+    <h2>Portfolio</h2>
+    <div id="portfolio-grid" class="portfolio-grid">
+      <!-- populated by script.js from /api/projects -->
+      <p class="loading-text">Loading projects…</p>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials" class="testimonials wrap">
+    <p class="eyebrow">Kind words</p>
+    <h2>What clients say</h2>
+    <div id="testimonials-list" class="testimonials-list">
+      <!-- populated by script.js from /api/testimonials -->
+      <p class="loading-text">Loading testimonials…</p>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact wrap">
+    <div class="contact-copy">
+      <p class="eyebrow">Get in touch</p>
+      <h2>Start a project</h2>
+      <p>Tell us a little about your studio or business and we'll follow up
+        within two working days.</p>
+    </div>
+    <form id="contact-form" class="contact-form">
+      <label for="name">Name</label>
+      <input id="name" name="name" type="text" required placeholder="Your name">
+
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" required placeholder="you@example.com">
+
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="4" required placeholder="A little about your project…"></textarea>
+
+      <button type="submit" class="btn btn-primary">Send message</button>
+      <p id="contact-status" class="contact-status" role="status"></p>
+    </form>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <span>© <span id="year"></span> Atelier Nine. All rights reserved.</span>
+    <span class="footer-meta">Built with Spring Boot · Docker · Kubernetes</span>
+  </div>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>
