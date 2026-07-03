@@ -53,8 +53,8 @@ pipeline {
             steps {
                 echo 'Deploying to Kubernetes Cluster...'
                 // Applies your separate deployment and service manifests
-                sh 'kubectl apply -f deployment.yaml'
-                sh 'kubectl apply -f service.yaml'
+                sh 'kubectl apply -f k8s/deployment.yaml'
+                sh 'kubectl apply -f k8s/service.yaml'
             }
         }
 
