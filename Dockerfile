@@ -1,14 +1,12 @@
-# Use Eclipse Temurin Java 25 JDK
-FROM eclipse-temurin:25-jdk
- 
-# Set working directory
+# ---- build stage ----
+FROM eclipse-temurin:25-jdk AS build
 WORKDIR /app
- 
-# Copy the JAR file into the container
-COPY target/online_portfolio_website-0.0.1-SNAPSHOT.jar app.jar
- 
-# Expose the Spring Boot port
-EXPOSE 8081
- 
-# Run the application
+COPY . .
+RUN chmod +x mvnw && ./mvnw -q clean package -DskipTests
+
+# ---- run stage ----
+FROM eclipse-temurin:25-jdk
+WORKDIR /app
+COPY --from=build /app/target/*.jar app.jar
+EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.jar"]
