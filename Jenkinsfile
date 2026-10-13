@@ -4,7 +4,11 @@ pipeline {
 
     triggers {
         githubPush()
-        pollSCM('H/2 * * * *')
+        pollSCM('* * * * *')
+    }
+
+    options {
+        disableConcurrentBuilds()
     }
 
     environment {
@@ -45,14 +49,16 @@ pipeline {
 
                     kubectl apply -f k8s/
 
-                    kubectl set image deployment/portfolio-site \
-                        portfolio-site="$IMAGE"
+                    # Actual deployment and container names are "portfolio"
+                    kubectl set image deployment/portfolio \
+                        portfolio="$IMAGE"
 
-                    kubectl rollout status deployment/portfolio-site \
+                    kubectl rollout status deployment/portfolio \
                         --timeout=180s
 
-                    kubectl get pods
-                    kubectl get deployment portfolio-site
+                    kubectl get deployment portfolio
+                    kubectl get pods -o wide
+                    kubectl get endpoints portfolio-service
                 '''
             }
         }
@@ -61,10 +67,12 @@ pipeline {
             steps {
                 sh '''
                     set -eu
+
                     curl --fail --silent --show-error \
                         --retry 10 --retry-delay 3 --retry-connrefused \
                         "$APP_URL/" -o /dev/null
-                    echo "Portfolio application is responding"
+
+                    echo "Portfolio is responding successfully"
                 '''
             }
         }
@@ -73,7 +81,7 @@ pipeline {
     post {
         success {
             echo "Deployment successful: ${env.IMAGE}"
-            echo "Application URL: ${env.APP_URL}"
+            echo "Application: ${env.APP_URL}"
         }
         failure {
             echo 'Pipeline failed. Review the failed stage logs.'
