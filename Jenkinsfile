@@ -63,19 +63,17 @@ pipeline {
             }
         }
 
-        stage('Smoke Test') {
-            steps {
-                sh '''
-                    set -eu
-
-                    curl --fail --silent --show-error \
-                        --retry 10 --retry-delay 3 --retry-connrefused \
-                        "$APP_URL/" -o /dev/null
-
-                    echo "Portfolio is responding successfully"
-                '''
-            }
-        }
+        
+    stage('Smoke Test') {
+        steps {
+            sh '''
+            set -e
+            echo "Checking portfolio application..."
+            curl --fail --silent --show-error http://localhost:8081/ -o /dev/null
+            echo "Smoke test passed!"
+        '''
+    }
+}
     }
 
     post {
